@@ -5,6 +5,26 @@ class RequestUrl:
     GET_TRACK = 'https://api.spotify.com/v1/search?q=year:'
 
 
+class GetRequestResponse:
+
+    def __init__(self):
+        self.request_response = {
+            "track_popularity": int,
+            "song_id": str,
+            "artist_id": str,
+            "album_id": str,
+            "song_name": str,
+            "artist_name": str,
+            "album_name": str
+        }
+
+    def __getitem__(self, item):
+        return self.request_response[item]
+
+    def __setitem__(self, key, value):
+        self.request_response[key] = value
+
+
 class TrackFeature:
     def __init__(self):
         self.request_response = {
@@ -35,15 +55,10 @@ class TrackFeature:
         self.request_response[key] = value
 
 
-# for key, value in new_data.items():
-#     track_2[key] = value
-#
-# Useful loop for api call
-
 class ArtistData:
     def __init__(self):
         self.request_response = {
-            "id": int,
+            "id": str,
             "genres": list,
             "popularity": int
         }
@@ -55,4 +70,17 @@ class ArtistData:
         self.request_response[key] = value
 
 
-print('dupa')
+class AlbumData:
+    def __init__(self):
+        self.request_response = {
+            "id": str,
+            "genres": list,
+            "popularity": int,
+            "release_date": str
+        }
+
+    def __getitem__(self, item):
+        return self.request_response[item]
+
+    def __setitem__(self, key, value):
+        self.request_response[key] = value
