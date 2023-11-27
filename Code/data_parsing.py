@@ -3,6 +3,7 @@ import time
 import pandas as pd
 from api_calls import ApiCall
 from config import SpotifyConfig
+from data_validation import validate_csv_files
 
 
 def main():
@@ -52,6 +53,10 @@ def main():
             df_artists, left_on='artist_id', right_on='id').merge(
             df_albums, left_on='album_id', right_on='id')
         df.to_csv(year + '.csv')
+
+    # data validation
+    csv_directory = 'Code/CSV'
+    validate_csv_files(csv_directory)
 
 if __name__ == '__main__':
     main()
