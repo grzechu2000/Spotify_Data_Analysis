@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 import os
 
 def plot_feature_vs_popularity_all_years(feature_name):
@@ -85,7 +86,7 @@ def boxplot__features_vs_time(year):     #PROBLEMATYCZNE PRZEZ FORMAT DANYCH: RR
     num_rows = 4
 
     fig, axs = plt.subplots(num_rows, num_cols, figsize=(18, 14))
-
+    df['release_date'] = pd.to_datetime(df['release_date'])
     for i in range(num_rows):
         for j in range(num_cols):
             feature_name = list_of_features[i * num_cols + j]
@@ -97,6 +98,8 @@ def boxplot__features_vs_time(year):     #PROBLEMATYCZNE PRZEZ FORMAT DANYCH: RR
             axs[i, j].set_xlabel("release_date")
             axs[i, j].set_ylabel(feature_name)
     plt.tight_layout()
+    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%b'))
+    plt.gca().xaxis.set_major_locator(mdates.MonthLocator())
     plt.show()
     
     
