@@ -140,6 +140,6 @@ def features_vs_time():
     
 
 #plot_features_vs_popularity(2022) # w konkretnym roku jaki wpływ na popualrnosc ma dana cecha
-plot_feature_vs_popularity_all_years() # jaki wpływ na popularność ma dana cecha na przestrzeni lat
+#plot_feature_vs_popularity_all_years() # jaki wpływ na popularność ma dana cecha na przestrzeni lat
 #plot_features_vs_time(2022) # jak sie zmielao wykrozystanie cech w danym roku
-#features_vs_time() # jak sie zmienialo wykorzystanie cech na przestrzeni lat
+features_vs_time() # jak sie zmienialo wykorzystanie cech na przestrzeni lat
