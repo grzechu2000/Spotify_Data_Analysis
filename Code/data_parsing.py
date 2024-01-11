@@ -1,9 +1,9 @@
-import time
-
 import pandas as pd
 from api_calls import ApiCall
 from config import SpotifyConfig
 from data_validation import validate_csv_files
+
+song_num = 1000
 
 
 def main():
@@ -23,26 +23,21 @@ def main():
         album_features = []
         artist_features = []
 
-        lule = 1000
         idx = 0
-        while idx < lule:
+        while idx < song_num:
             dataset = api.search_request(api.keywords, year, idx, dataset, song_ids, album_ids, artist_ids)
             idx += 50
-            time.sleep(0.3)
 
         print("Finished acquiring music data for ", year)
 
         for idx in range(0, len(song_ids), 50):
             song_features = api.get_tracks_data(song_ids[idx: idx + 50], song_features)
-            time.sleep(0.3)
 
         for idx in range(0, len(album_ids), 20):
             album_features = api.get_album_data(album_ids[idx: idx + 20], album_features)
-            time.sleep(0.3)
 
         for idx in range(0, len(artist_ids), 50):
             artist_features = api.get_artist_data(artist_ids[idx: idx + 50], artist_features)
-            time.sleep(0.3)
 
         df_tracks = pd.DataFrame(dataset)
         df_features = pd.DataFrame(song_features)
